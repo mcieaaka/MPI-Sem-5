@@ -1,0 +1,35 @@
+.model small
+.stack 100H
+.data
+
+chtable DB 'H','A','R','S','H','I','T'
+
+.code
+
+MOV AX,DATA
+MOV DS,AX
+
+MOV AH,02H
+MOV BH,0
+MOV DH,12
+MOV DL,40
+INT 10H
+
+MOV AH,06H
+MOV AL,00H
+MOV BH,52H
+MOV CX,0000H
+MOV DX,184FH
+
+INT 10H
+
+MOV CX,9
+LEA SI,CHTABLE
+MOV AH,02
+
+L1:MOV AH,02
+MOV DL,[SI]
+INT 21H
+
+INC SI
+LOOP L1
